@@ -505,16 +505,24 @@ export default function App() {
 
   function handleTouchDragStart(e) {
     e.target.classList.add("dragging"); // this / e.target is the source node.
-    const touchLocation = e.targetTouches[0];
+    const touchLocation = e.touches[0];
 
+  if (e.target.className.split(" ").includes("technique"))
+  {
+    
     e.target.style.position = "absolute";
-    e.target.style.left = touchLocation.clientX + "px";
-    e.target.style.top = touchLocation.clientY + "px";
+    e.target.style.zIndex = "-100"
+    e.target.style.left = touchLocation.clientX - 100 + "px"
+    e.target.style.top = touchLocation.clientY - 100 + "px"
+    
+  } else {
+    e.target.style.position = "absolute";
+    e.target.style.zIndex = "-100"
+    e.target.style.left = touchLocation.clientX -100  + "px"
+    e.target.style.top = touchLocation.clientY - 500 + "px"
+  }
 
-    console.log("X: " + touchLocation.clientX)
-    console.log("Y: " + touchLocation.clientY)
-
-    console.log(e.target)
+  console.log(e.touches)
 
     const x = touchLocation.clientX;
     const y = touchLocation.clientY;

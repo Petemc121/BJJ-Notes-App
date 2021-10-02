@@ -60,7 +60,7 @@ export default function Technique({technique, handleTouchDragStart, handleTouchE
 
 
     return (
-        <div draggable="true" onTouchEnd={handleTouchEnd} id={technique.id} onTouchMove={handleTouchDragStart} onDrag={handleDragStart} onDragEnd={handleDragEnd} onDragEnter={(event) => {event.preventDefault()}} style={{backgroundColor: technique.color}} class="log">
+        <div draggable="true" onTouchEnd={handleTouchEnd} id={technique.id} onTouchMove={handleTouchDragStart} onDrag={handleDragStart} onDragEnd={handleDragEnd} onDragEnter={(event) => {event.preventDefault()}} style={{backgroundColor: technique.color}} class="log technique">
 
            <h3>{technique.technique}</h3> 
            <h3>Video</h3> 
