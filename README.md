@@ -12,7 +12,7 @@ In this app you have the ability to create technique components, giving them a n
 
 You then have the ability to drag and drop these components into the category components, transfering their props into newly generated 'categorized technique' components.
 
-All categories, techniques, categorized techniques and notes are deletable. Notes and video links are editable.
+All categories, techniques, categorized techniques and notes are deletable. Notes and video links are editable and deletable.
 
 This was great practice in lifting component states up to the main app component, and passing them back as props.
 
