@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/bjj-notes-app/static/css/main.0e3f0cfc.chunk.css",
-    "main.js": "/bjj-notes-app/static/js/main.9517dd30.chunk.js",
-    "main.js.map": "/bjj-notes-app/static/js/main.9517dd30.chunk.js.map",
-    "runtime-main.js": "/bjj-notes-app/static/js/runtime-main.a1e4c3ad.js",
-    "runtime-main.js.map": "/bjj-notes-app/static/js/runtime-main.a1e4c3ad.js.map",
-    "static/js/2.d2bf6422.chunk.js": "/bjj-notes-app/static/js/2.d2bf6422.chunk.js",
-    "static/js/2.d2bf6422.chunk.js.map": "/bjj-notes-app/static/js/2.d2bf6422.chunk.js.map",
-    "index.html": "/bjj-notes-app/index.html",
-    "static/css/main.0e3f0cfc.chunk.css.map": "/bjj-notes-app/static/css/main.0e3f0cfc.chunk.css.map",
-    "static/js/2.d2bf6422.chunk.js.LICENSE.txt": "/bjj-notes-app/static/js/2.d2bf6422.chunk.js.LICENSE.txt"
+    "main.css": "/static/css/main.0e3f0cfc.chunk.css",
+    "main.js": "/static/js/main.30fcf707.chunk.js",
+    "main.js.map": "/static/js/main.30fcf707.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.4fd71345.js",
+    "runtime-main.js.map": "/static/js/runtime-main.4fd71345.js.map",
+    "static/js/2.d2bf6422.chunk.js": "/static/js/2.d2bf6422.chunk.js",
+    "static/js/2.d2bf6422.chunk.js.map": "/static/js/2.d2bf6422.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.0e3f0cfc.chunk.css.map": "/static/css/main.0e3f0cfc.chunk.css.map",
+    "static/js/2.d2bf6422.chunk.js.LICENSE.txt": "/static/js/2.d2bf6422.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.a1e4c3ad.js",
+    "static/js/runtime-main.4fd71345.js",
     "static/js/2.d2bf6422.chunk.js",
     "static/css/main.0e3f0cfc.chunk.css",
-    "static/js/main.9517dd30.chunk.js"
+    "static/js/main.30fcf707.chunk.js"
   ]
 }
