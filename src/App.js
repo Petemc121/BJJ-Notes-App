@@ -91,8 +91,6 @@ export default function App() {
         } else {
           updatedTechniques.push(technique);
         }
-
-        
       });
 
       return updatedTechniques;
@@ -149,7 +147,6 @@ export default function App() {
     if (embedVideoLink.includes("&t=")) {
       const tIndex = embedVideoLink.indexOf("&t=");
       embedVideoLink = embedVideoLink.substring(0, tIndex);
-      
     }
 
     setTechniques((techniques) => {
@@ -287,15 +284,17 @@ export default function App() {
     );
 
     const modifiedColorCategories = deletedCategories.map((category, index) => {
-      const updatedCatTechniques = category.catTechniques.map((catTechnique) => {
-        return {
-          id: catTechnique.id,
-          technique: catTechnique.technique,
-          video: catTechnique.video,
-          color: LightenDarkenColor( colorArray[index], -40),
-          notes: catTechnique.notes,
-        };
-      });
+      const updatedCatTechniques = category.catTechniques.map(
+        (catTechnique) => {
+          return {
+            id: catTechnique.id,
+            technique: catTechnique.technique,
+            video: catTechnique.video,
+            color: LightenDarkenColor(colorArray[index], -40),
+            notes: catTechnique.notes,
+          };
+        }
+      );
       return {
         id: category.id,
         category: category.category,
@@ -507,22 +506,19 @@ export default function App() {
     e.target.classList.add("dragging"); // this / e.target is the source node.
     const touchLocation = e.touches[0];
 
-  if (e.target.className.split(" ").includes("technique"))
-  {
-    
-    e.target.style.position = "absolute";
-    e.target.style.zIndex = "-100"
-    e.target.style.left = touchLocation.clientX - 100 + "px"
-    e.target.style.top = touchLocation.clientY - 100 + "px"
-    
-  } else {
-    e.target.style.position = "absolute";
-    e.target.style.zIndex = "-100"
-    e.target.style.left = touchLocation.clientX -100  + "px"
-    e.target.style.top = touchLocation.clientY - 500 + "px"
-  }
+    if (e.target.className.split(" ").includes("technique")) {
+      e.target.style.position = "absolute";
+      e.target.style.zIndex = "-100";
+      e.target.style.left = touchLocation.clientX - 100 + "px";
+      e.target.style.top = touchLocation.clientY - 100 + "px";
+    } else {
+      e.target.style.position = "absolute";
+      e.target.style.zIndex = "-100";
+      e.target.style.left = touchLocation.clientX - 100 + "px";
+      e.target.style.top = touchLocation.clientY - 500 + "px";
+    }
 
-  console.log(e.touches)
+    console.log(e.touches);
 
     const x = touchLocation.clientX;
     const y = touchLocation.clientY;
@@ -564,7 +560,7 @@ export default function App() {
 
       dropTarget.style.filter = "brightness(100%)";
       handleDrop(e, category);
-      console.log(dropTarget)
+      console.log(dropTarget);
     }
 
     if (dropTarget.className === "categoryKeys") {
@@ -588,11 +584,11 @@ export default function App() {
   const handleDrop = (e, chosenCategory) => {
     const draggable = document.querySelector(".dragging");
     e.target.style.filter = "brightness(100%)";
-    console.log(typeof draggable.id)
+    console.log(typeof draggable.id);
     techniques.forEach((technique) => {
       if (draggable.id === technique.id.toString()) {
         const oldColor = chosenCategory.color;
-       
+
         const newColor = LightenDarkenColor(oldColor, -40);
 
         setCategories((categories) => {
@@ -626,47 +622,45 @@ export default function App() {
     });
 
     categories.forEach((category) => {
-        category.catTechniques.forEach((catTechnique) => {
+      category.catTechniques.forEach((catTechnique) => {
         if (draggable.id === catTechnique.id.toString()) {
-            if (category.id !== chosenCategory.id)
-            {
+          if (category.id !== chosenCategory.id) {
+            const oldColor = chosenCategory.color;
 
-          const oldColor = chosenCategory.color;
-         
-          const newColor = LightenDarkenColor(oldColor, -40);
-  
-          setCategories((categories) => {
-            const updatedCategories = categories.map((category) => {
-              if (chosenCategory.id === category.id) {
-                const updatedCatTechniques = [
-                  ...category.catTechniques,
-                  {
-                    id: catTechnique.id,
-                    technique: catTechnique.technique,
-                    video: catTechnique.video,
-                    color: newColor,
-                    notes: catTechnique.notes,
-                  },
-                ];
-                return {
-                  id: category.id,
-                  category: category.category,
-                  color: category.color,
-                  catTechniques: updatedCatTechniques,
-                };
-              } else {
-                return category;
-              }
+            const newColor = LightenDarkenColor(oldColor, -40);
+
+            setCategories((categories) => {
+              const updatedCategories = categories.map((category) => {
+                if (chosenCategory.id === category.id) {
+                  const updatedCatTechniques = [
+                    ...category.catTechniques,
+                    {
+                      id: catTechnique.id,
+                      technique: catTechnique.technique,
+                      video: catTechnique.video,
+                      color: newColor,
+                      notes: catTechnique.notes,
+                    },
+                  ];
+                  return {
+                    id: category.id,
+                    category: category.category,
+                    color: category.color,
+                    catTechniques: updatedCatTechniques,
+                  };
+                } else {
+                  return category;
+                }
+              });
+
+              return updatedCategories;
             });
-  
-            return updatedCategories;
-          });
 
-          handleDeleteCatTechnique(catTechnique.id, category.id);
+            handleDeleteCatTechnique(catTechnique.id, category.id);
+          }
         }
-    }
-    })
       });
+    });
   };
 
   function LightenDarkenColor(col, amt) {
@@ -703,71 +697,77 @@ export default function App() {
         BJJ NOTES
       </div>
       <div id="description" class="header">
-        <p>
-          Add your techniques and categories below. 
-        </p>
+        <p>Add your techniques and categories below.</p>
         <p>
           Drag and drop techniques into categories/category shortcuts to
           categorize them.
         </p>
       </div>
 
-      <div id="inContain">
-        <label for="technique">Technique</label>
-        <input
-          ref={techniqueRef}
-          id="techniqueIn"
-          class="input titleIn"
-          type="text"
-        ></input>
-        <button onClick={createLog} id="addTechnique" class="input">
-          Add Technique
-        </button>
+      <div id="techniques">
+        <div id="inContain">
+          <h1 id="techniquesTitle">Techniques</h1>
+          <label for="technique">Technique</label>
+          <input
+            ref={techniqueRef}
+            id="techniqueIn"
+            class="input titleIn"
+            type="text"
+          ></input>
+          <button onClick={createLog} id="addTechnique" class="input">
+            Add Technique
+          </button>
+        </div>
+        <div id="techniqueContain">
+          <Techniques
+            handleTouchEnd={handleTouchEnd}
+            handleDeleteTechnique={handleDeleteTechnique}
+            handleTouchDragStart={handleTouchDragStart}
+            handleDeleteNote={handleDeleteNote}
+            editNote={editNote}
+            editVideo={editVideo}
+            addNote={addNote}
+            techniques={techniques}
+          />
+        </div>
       </div>
-      <div id="techniqueContain">
-        <Techniques
+      <div id="categories">
+        <div class="center">
+          <h1 id="categoriesTitle">Categories</h1>
+        </div>
+        <div class="center">
+          <h1 id="categoryKeysTitle">Category Shortcuts</h1>
+        </div>
+        <div class="center">
+          <CategoryKeys handleDrop={handleDrop} categoryKeys={categoryKeys} />
+        </div>
+        <div id="inContain">
+          <label for="instructional">Category</label>
+          <input
+            ref={categoryRef}
+            id="categoryIn"
+            class="input titleIn"
+            type="text"
+          ></input>
+          <button onClick={handleCreateCategory} id="addCategory" class="input">
+            Add Category
+          </button>
+        </div>
+        <Categories
           handleTouchEnd={handleTouchEnd}
-          handleDeleteTechnique={handleDeleteTechnique}
           handleTouchDragStart={handleTouchDragStart}
-          handleDeleteNote={handleDeleteNote}
-          editNote={editNote}
-          editVideo={editVideo}
-          addNote={addNote}
+          handleDrop={handleDrop}
+          handleDeleteCatTechNote={handleDeleteCatTechNote}
+          handleAddCatTechNote={handleAddCatTechNote}
+          handleEditCatTechNote={handleEditCatTechNote}
+          editCatTechVideo={editCatTechVideo}
+          handleDeleteCategory={handleDeleteCategory}
           techniques={techniques}
+          handleDeleteCatTechnique={handleDeleteCatTechnique}
+          handleDeleteTechnique={handleDeleteTechnique}
+          categories={categories}
         />
       </div>
-      <div class="center">
-        <h1 id="categoryKeysTitle">Category Shortcuts</h1>
-      </div>
-      <div class="center">
-        <CategoryKeys handleDrop={handleDrop} categoryKeys={categoryKeys} />
-      </div>
-      <div id="inContain">
-        <label for="instructional">Category</label>
-        <input
-          ref={categoryRef}
-          id="categoryIn"
-          class="input titleIn"
-          type="text"
-        ></input>
-        <button onClick={handleCreateCategory} id="addCategory" class="input">
-          Add Category
-        </button>
-      </div>
-      <Categories
-        handleTouchEnd={handleTouchEnd}
-        handleTouchDragStart={handleTouchDragStart}
-        handleDrop={handleDrop}
-        handleDeleteCatTechNote={handleDeleteCatTechNote}
-        handleAddCatTechNote={handleAddCatTechNote}
-        handleEditCatTechNote={handleEditCatTechNote}
-        editCatTechVideo={editCatTechVideo}
-        handleDeleteCategory={handleDeleteCategory}
-        techniques={techniques}
-        handleDeleteCatTechnique={handleDeleteCatTechnique}
-        handleDeleteTechnique={handleDeleteTechnique}
-        categories={categories}
-      />
     </>
   );
 }
